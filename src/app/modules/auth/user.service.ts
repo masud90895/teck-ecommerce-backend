@@ -78,8 +78,13 @@ const loginUser = async (payload: { email: string; password: string }) => {
     config.jwt.secret as Secret,
     config.jwt.expires_in as string,
   );
+  const refreshToken = jwtHelpers.createToken(
+    { userId, role },
+    config.jwt.refresh_secret as Secret,
+    config.jwt.refresh_expires_in as string,
+  );
 
-  return { accessToken };
+  return { accessToken, refreshToken };
 };
 
 const getProfile = async (userId: string): Promise<User | null> => {
