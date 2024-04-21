@@ -11,8 +11,6 @@ import prisma from '../../../shared/prisma';
 import { ISingUpUserResponse } from './user.interface';
 
 const registerUser = async (user: User): Promise<ISingUpUserResponse> => {
-
-
   user.password = await bcrypt.hash(
     user.password,
     Number(config.bycrypt_salt_rounds)
